@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>إعادة ضبط كلمة المرور</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div class="modalPages">
+  <ion-row>
+    <ion-col size="3" class="feilds">كلمة المرور:</ion-col>
+    <ion-col size="9">
+      <ion-item class="generalInput" >
+        <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.Password"></ion-input>
+        <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54);"></ion-icon>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3" class="feilds">تأكيد كلمة المرور:</ion-col>
+    <ion-col size="9">
+       <ion-item class="generalInput" >
+        <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.Repassword"></ion-input>
+        <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+      </ion-item> -->
+     <!-- <ion-input type="password" class="generalInput" [(ngModel)]="user.Repassword"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="12"  align="center">
+      <ion-button (click)="resetPass(user)" class="generalButton"
+      [disabled]="user.Password != user.Repassword">
+         <ion-icon slot="icon-only" name="add"></ion-icon> -->
+      <!--  حفظ
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  </div> -->
+
+
+  <form [formGroup]="PassForm" (ngSubmit)="resetPass()">
+    <!-- <mat-form-field> -->
+     <ion-row>
+       <ion-col size="4" class="feilds">كلمة المرور: <ion-text color="danger">*</ion-text></ion-col>
+       <ion-col size="8">
+         <ion-item class="generalInput" >
+           <ion-input [type]="showPassword ? 'text' : 'password'" required formControlName="Password" name="Password"></ion-input>
+           <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54);"></ion-icon>
+   
+         </ion-item>
+         <div class="error-container">
+           <ng-container *ngFor="let validation of validations.Password">
+             <div class="error-message" *ngIf="PassForm.get('Password').hasError(validation.type) && (PassForm.get('Password').dirty || PassForm.get('Password').touched)">
+               <ion-icon name="information-circle-outline"></ion-icon>
+               <span>{{ validation.message }}</span>
+             </div>
+           </ng-container>
+         </div>
+       </ion-col>
+     </ion-row>
+     <ion-row>
+       <ion-col size="4" class="feilds">تأكيد كلمة المرور: <ion-text color="danger">*</ion-text></ion-col>
+       <ion-col size="8">
+         <ion-input type="password" class="generalInput" required formControlName="Repassword" name="Repassword"></ion-input>
+         <!-- <ion-item class="generalInput" >
+           <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.Repassword" name="repassword"></ion-input>
+           <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54);"></ion-icon>
+         </ion-item> -->
+       </ion-col>
+     </ion-row>
+   
+     <ion-row>
+       <ion-col size="12"  align="center">
+         <ion-button type="submit" class="generalButton" [disabled]="PassForm.value.Password != PassForm.value.Repassword || PassForm.invalid">
+           <!-- <ion-icon slot="icon-only" name="add"></ion-icon> -->
+           حفظ
+         </ion-button>
+       </ion-col>
+     </ion-row>
+   <!-- </mat-form-field> -->
+   </form>
+</ion-content>

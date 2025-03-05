@@ -1,0 +1,42 @@
+content{
+    // margin: 0px 24px !important;
+    
+}
+
+// .qrcodeImage
+// {
+//     display: flex;
+//     flex:1;
+// }
+
+.sendtoTransportationbutton{
+    --background: #A62321;
+    color: white;
+    border-radius: 5px;
+    width: 30%;
+    // direction: ltr;
+    position: fixed;
+    left: 24px;
+    bottom: 8px;
+}
+.addcorrespondence{
+  
+    position: fixed;
+    right: 24px;
+    bottom: 8px;
+    --background: #A62321;
+    margin-top: 2px;
+}
+
+.fabicon{
+
+    --background: #A62321;
+}
+.footer{
+    min-height: 70px;
+    // position: relative;
+}
+.toolbar{
+    --min-height: 70px;
+}
+

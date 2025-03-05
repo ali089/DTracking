@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1" text="رجوع"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="pagesBackground">
+  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <div>
+    <ion-title size="large" class="homeTitle">إضافة بيانات المستلم</ion-title>
+  </div>
+
+  <div class="correspondencesTable" color="tertiary">
+  <table class="table" border="2">
+    <tr class="mainRow">
+      <td>م</td>
+
+      <td>رقم البريد</td>
+      <td>الجهة</td>
+      <td>الموقع</td>
+      <td>مرسلة إلى</td>
+
+      <td>الوقت</td>
+      
+     
+    </tr>
+    <tr *ngFor="let i of deliveryData | keyvalue ; let num = index" class="custom-bg">
+
+      <td>{{num + 1}}</td>
+      <td>{{i.value.CorrespondenceNumber}}</td>
+      <td>{{i.value.organizationName}}</td>
+      <td>{{i.value.OfficeSite}}</td>
+      <td>{{i.value.SendTo}}</td>
+   
+      <td>{{i.value.CurrentDateTime}}</td>
+     
+
+    </tr>
+  </table>
+  </div>
+
+
+  <ion-row>
+    <ion-col size="1.5" class="feilds">اسم المستلم:</ion-col>
+    <ion-col size="4.5">
+      <ion-input type="text" class="generalInput" [(ngModel)]="ReceipientData.ReceipientName"></ion-input>
+    </ion-col>
+    <ion-col size="1.5" class="feilds">الرقم الوظيفي:</ion-col>
+    <ion-col size="4.5">
+      <ion-input type="text" class="generalInput" [(ngModel)]="ReceipientData.ReceipientId"></ion-input>
+    </ion-col>
+  </ion-row>
+  <!-- <ion-row>
+    <ion-col size="1.5" class="feilds">موقع التسليم:</ion-col>
+    <ion-col size="8.5">
+        <div >
+          
+          <ion-item class="generalInput">
+            <ion-label style="float: right; color: white;">
+              خط العرض
+            </ion-label>
+            <ion-badge color="danger">{{latitude}}</ion-badge>
+            <ion-label style="color: white;">
+              خط الطول
+            </ion-label>
+            <ion-badge color="danger" >{{longitude}}</ion-badge>
+            <ion-label style="color: white;">
+              اسم المكان
+            </ion-label>
+            <ion-badge color="danger" >{{address}}</ion-badge>
+          </ion-item>
+          <ion-item class="generalInput">
+            
+          </ion-item>    
+        </div>
+    </ion-col>
+    <ion-col size="1.5" style="padding-top: 33px;">
+      <ion-button (click)="getCurrentCoordinates()">
+        موقع التسليم
+      </ion-button>
+    </ion-col>
+  </ion-row> -->
+  <ion-row>
+      <ion-col size="1.5" class="feilds">توقيع المستلم:</ion-col>
+    
+    <ion-col size="10">
+      <div style="background-color: brown;">
+        <ion-buttons slot="end">
+          <ion-button color="light" expand="full" [disabled]="isCanvasBlank()" (click)="save()"> حفظ</ion-button>
+          <ion-button color="light" expand="full" (click)="undo()"> تراجع</ion-button>
+          <ion-button color="light" expand="full" (click)="clear()"> حذف</ion-button>
+        </ion-buttons>
+        
+    </div>
+      <div class="signature-pad">
+        <div>
+          <canvas class="signature-pad-canvas" #canvas style="touch-action: none;"></canvas>
+        </div>
+      </div>
+    </ion-col>
+  
+  </ion-row>
+  <ion-row>
+    <ion-col size="12"  align="center">
+      <ion-button (click)="getCurrentCoordinates(ReceipientData)" class="generalButton">
+        <!-- <ion-icon slot="icon-only" name="add"></ion-icon> -->
+        حفظ
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>

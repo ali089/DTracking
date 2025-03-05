@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="manageusers" text="رجوع"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="pagesBackground">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <div>
+    <ion-title size="large" class="homeTitle">تعديل بيانات المستخدم: {{user.UserName}}</ion-title>
+  </div>
+
+  <ion-row>
+    <ion-col size="3" class="feilds">الاسم كامل:</ion-col>
+    <ion-col size="9">
+      <ion-input type="text" class="generalInput" [(ngModel)]="user.FullName"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="3" class="feilds">المسمى الوظيفي:</ion-col>
+    <ion-col size="9">
+      <ion-input type="text" class="generalInput" [(ngModel)]="user.Position"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="3" class="feilds">الدائرة:</ion-col>
+    <!-- <ion-col size="9">
+      <ion-input type="text" class="generalInput" [(ngModel)]="user.Department"></ion-input>
+    </ion-col> -->
+    <ion-col size="9">
+      <ion-input type="text" class="generalInput" required [(ngModel)]="user.Department"></ion-input>
+      <!-- <ion-select [(ngModel)]="user.Department" value="تقنية المعلومات" class="generalInput" placeholder="{{user.Department}}" ok-text="موافق" cancel-text="إلغاء">
+        <ion-select-option value="تقنية المعلومات">تقنية المعلومات</ion-select-option>
+        <ion-select-option value="الوثائق">الوثائق</ion-select-option>
+        <ion-select-option value="الشؤون الإدارية">الشؤون الإدارية</ion-select-option>
+      </ion-select> -->
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="3" class="feilds">رقم الهاتف:</ion-col>
+    <ion-col size="9">
+      <ion-input type="text" class="generalInput" required [(ngModel)]="user.Phone"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="3" class="feilds">نوع المستخدم:</ion-col>
+    <ion-col size="9">
+      <!-- <ion-input type="text" class="generalInput" [(ngModel)]="user.UserType"></ion-input> -->
+     
+      <ion-select [(ngModel)]="user.UserType" value="admin" class="generalInput" placeholder="{{user.UserType}}" ok-text="موافق" cancel-text="إلغاء">
+        <ion-select-option value="admin">مدير النظام</ion-select-option>
+        <ion-select-option value="document">الوثائق</ion-select-option>
+        <ion-select-option value="transportation">مسؤول النقليات</ion-select-option>
+        <ion-select-option value="driver">السائق</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <!-- <ion-row>
+    <ion-col size="3" class="feilds">رقم الهاتف:</ion-col>
+    <ion-col size="9">
+      <ion-input type="phone" class="generalInput" [(ngModel)]="user.user.phone"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="3" class="feilds">البريد الالكتروني:</ion-col>
+    <ion-col size="9">
+      <ion-input type="mail" class="generalInput" [(ngModel)]="user.user.email"></ion-input>
+    </ion-col>
+  </ion-row> -->
+  
+  <!-- <ion-row>
+    <ion-col size="3" class="feilds">كلمة المرور:</ion-col>
+    <ion-col size="9">
+      <ion-item class="generalInput" >
+        <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.Password"></ion-input>
+        <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54);"></ion-icon>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3" class="feilds">تأكيد كلمة المرور:</ion-col>
+    <ion-col size="9">
+       <ion-item class="generalInput" >
+        <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.Repassword"></ion-input>
+        <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+      </ion-item> -->
+  <!--    <ion-input type="password" class="generalInput" [(ngModel)]="user.Repassword"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="12"  align="center">
+      <ion-button (click)="updateUser(user)" class="generalButton"
+      [disabled]="user.Password != user.Repassword">
+         <ion-icon slot="icon-only" name="add"></ion-icon> -->
+     <!--   حفظ
+      </ion-button>
+    </ion-col>
+  </ion-row> -->
+
+  <form [formGroup]="PassForm" (ngSubmit)="updateUser()">
+    <!-- <mat-form-field> -->
+     <ion-row>
+       <ion-col size="3" class="feilds">كلمة المرور: <ion-text color="danger">*</ion-text></ion-col>
+       <ion-col size="9">
+         <ion-item class="generalInput" >
+           <ion-input [type]="showPassword ? 'text' : 'password'" required formControlName="Password" name="Password"></ion-input>
+           <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54);"></ion-icon>
+   
+         </ion-item>
+         <div class="error-container">
+           <ng-container *ngFor="let validation of validations.Password">
+             <div class="error-message" *ngIf="PassForm.get('Password').hasError(validation.type) && (PassForm.get('Password').dirty || PassForm.get('Password').touched)">
+               <ion-icon name="information-circle-outline"></ion-icon>
+               <span>{{ validation.message }}</span>
+             </div>
+           </ng-container>
+         </div>
+       </ion-col>
+     </ion-row>
+     <ion-row>
+       <ion-col size="3" class="feilds">تأكيد كلمة المرور: <ion-text color="danger">*</ion-text></ion-col>
+       <ion-col size="9">
+         <ion-input type="password" class="generalInput" required formControlName="Repassword" name="Repassword"></ion-input>
+         <!-- <ion-item class="generalInput" >
+           <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.Repassword" name="repassword"></ion-input>
+           <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54);"></ion-icon>
+         </ion-item> -->
+       </ion-col>
+     </ion-row>
+   
+     <ion-row>
+       <ion-col size="12"  align="center">
+         <ion-button type="submit" class="generalButton" [disabled]="PassForm.value.Password != PassForm.value.Repassword || PassForm.invalid">
+           <!-- <ion-icon slot="icon-only" name="add"></ion-icon> -->
+           حفظ
+         </ion-button>
+       </ion-col>
+     </ion-row>
+   <!-- </mat-form-field> -->
+   </form>
+</ion-content>

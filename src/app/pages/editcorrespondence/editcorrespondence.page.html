@@ -1,0 +1,182 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab2" text="رجوع"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="pagesBackground">
+
+  <div>
+    <ion-title size="large" class="homeTitle"> تعديل الصادر رقم: {{userData.CorrespondenceNumber}}</ion-title>
+  </div>
+
+  <div class="correspondencesTable">
+    <ion-row>
+      <!-- <ion-col size="1.5" class="feilds">رقم الصادر:<ion-text color="danger">*</ion-text></ion-col>
+      <ion-col size="3.5">
+        <ion-input required type="text" class="generalInput" [(ngModel)]="data.CorrespondenceNumber"></ion-input>
+        
+      </ion-col> -->
+      <ion-col size="3" class="feilds">الجهة:</ion-col>
+      <ion-col size="8" class="feilds" >
+      <ion-label>{{userData.organizationName}}</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+    
+    <ion-col size="3" class="feilds">درجة السرية:</ion-col>
+    <ion-col size="8" class="feilds">
+    <ion-label>{{userData.confidLevel}}</ion-label>
+    </ion-col>
+  
+ 
+    </ion-row>
+    <ion-row>
+      <ion-col size="3" class="feilds">درجة الأولوية:</ion-col>
+      <ion-col size="8" class="feilds">
+      <ion-label>{{userData.PriorityLevel}}</ion-label>
+      </ion-col>
+    </ion-row>
+    
+      <!-- <ion-row>
+        <ion-col size="3" class="feilds">طريقة التوصيل:</ion-col>
+        <ion-col size="8" class="feilds">
+          <ion-label>{{userData.deliveryMethod}}</ion-label>
+        </ion-col>
+      </ion-row> -->
+
+      <!-- <ion-col size="1.5" class="feilds">درجة الأولوية:</ion-col>
+      <ion-col size="3.5">
+        <ion-select [(ngModel)]="data.PriorityLevel" value="data.PriorityLevel" class="generalInput" ok-text="موافق" cancel-text="إلغاء">
+          <ion-select-option value="عاجل جداً">عاجل جداً</ion-select-option>
+          <ion-select-option value="عاجل">عاجل</ion-select-option>
+          <ion-select-option value="عادي">عادي</ion-select-option>
+        </ion-select>
+      </ion-col> -->
+
+
+      <ion-row>
+      <ion-col size="3" class="feilds">مرسله إلى:</ion-col>
+      <ion-col size="8" class="feilds">
+        <ion-label>{{userData.SendTo}}</ion-label>
+      </ion-col>
+    </ion-row>
+<ion-row>
+  <ion-col size="3" class="feilds">الموقع:</ion-col>
+  <ion-col size="8" class="feilds">
+    <!-- <ion-label>{{userData.OfficeSite}}</ion-label> -->
+    <ion-input [(ngModel)]="userData.OfficeSite" class="generalInput"></ion-input>
+  </ion-col>
+</ion-row>
+
+    <ion-row>
+      <ion-col size="3" class="feilds">اسم السائق:</ion-col>
+      <ion-col size="8" >
+        <ion-select [(ngModel)]="userData.CurrentDriverId" class="generalInput" (ionChange)="changeDriver($event)" ok-text="موافق" cancel-text="إلغاء">
+          <ion-select-option *ngFor="let driver of drivers" [value]="driver.PartyUserId">{{driver.FullName}}</ion-select-option>
+        </ion-select>
+      
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3" class="feilds">رقم هاتف السائق:</ion-col>
+      <ion-col size="8">
+        <ion-input [(ngModel)]="userData.DriverNumber" type="number" class="generalInput"></ion-input>
+      </ion-col>
+    </ion-row>    <ion-row>
+      <ion-col size="3" class="feilds">ملاحظات:</ion-col>
+      <ion-col size="8">
+        <ion-textarea color="primary" [(ngModel)]="userData.CurrentNote" class="generalInput"></ion-textarea>
+        <!-- <ion-input [(ngModel)]="userData.Notes" type="number" class="generalInput"></ion-input> -->
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-col size="3" class="feilds">طريقة التوصيل:</ion-col>
+      <ion-col size="8" >
+        <ion-select [(ngModel)]="userData.DeliveryMethodId" class="generalInput" (ionChange)="changeMethod($event)" ok-text="موافق" cancel-text="إلغاء">
+          <ion-select-option *ngFor="let method of methods" [value]="method.LookupsId">{{method.DescAr}}</ion-select-option>
+        </ion-select>
+      
+      </ion-col>
+    </ion-row> -->
+
+    <!-- <ion-row>
+      <ion-col size="3" class="feilds">المرسل إليه:<ion-text color="danger">*</ion-text></ion-col>
+      <ion-col size="9"> -->
+        <!-- <select  class="loginInput">
+          <option *ngFor="let item of list" [value]="item">{{item.sendTo}}</option>
+        </select> -->
+        <!-- <ion-select [(ngModel)]="newCorrespondence.sendTo" class="generalInput" ok-text="موافق" cancel-text="إلغاء">
+          <ion-select-option *ngFor="let item of list">{{item.sendTo}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row> -->
+<!-- 
+    <div>
+      <ion-button (click)="showSendtoModal()" class="showModal">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+      <table border="2" class="table">
+        <tr class="mainRow" color="primary">
+          <td>الجهة:</td>
+          <td>الموقع:</td>
+          <td>المرسل إليه:</td>
+          <td>نوع الصادر</td>
+          <td>الإجراءات</td>
+        </tr>
+        <tr *ngFor="let item of data.sendTo">
+          <td>{{item.data.organizationName}}</td>
+          <td>{{item.data.organizationLocation}}</td>
+          <td>{{item.data.sendTo}}</td>
+          <td>{{item.data.correspondenceType}}</td>
+           <td><ion-list>
+            <ion-radio-group name="corresType" value="original" [(ngModel)]="newCorrespondence.correspondenceType">
+              <ion-item>
+                <ion-label>أصلية</ion-label>
+                <ion-radio value="original"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>نسخة</ion-label>
+                <ion-radio value="copy"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list></td> 
+          <td>
+            <ion-buttons slot="start">
+              <ion-button (click)="updateSendTo()">
+                <ion-icon slot="start" name="add"></ion-icon>
+                تعديل
+              </ion-button>
+              <ion-button (click)="onClick()">
+                <ion-icon slot="start" name="add"></ion-icon>
+                حذف
+              </ion-button>
+            </ion-buttons>
+          </td>
+
+        </tr>
+      </table>
+    </div> -->
+
+    <!-- <ion-item class="postdateTime">
+      <ion-datetime displayFormat="MMM DD, YYYY HH:mm" pickerFormat="MMM DD, YYYY HH:mm" [(ngModel)]="postDateTime"></ion-datetime>
+    </ion-item> -->
+
+    <!-- <ion-item>
+      <ion-label>Date</ion-label>
+      pickerFormat="YYYY-MM-DD hh:mm a" 
+      <ion-datetime display-format="DD.MM.YYYY HH:mm"></ion-datetime>
+    </ion-item> -->
+  </div>
+  <div align="center">
+    <ion-button (click)="updateDelivery(userData)" expand="block" fill="clear" shape="round" 
+    class="generalButton"> 
+      حفظ
+    </ion-button>
+  </div>
+
+ 
+  
+</ion-content>

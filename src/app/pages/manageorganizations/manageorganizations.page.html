@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1" text="رجوع"></ion-back-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="pagesBackground">
+
+  <div>
+    <ion-title size="large" class="homeTitle">إدارة الجهات</ion-title>
+  </div>
+
+  <div class="correspondencesTable">
+    <ion-button (click)="showNewOrganizationModal()" class="showModal">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+    <table border="2" class="table">
+      <tr class="mainRow" color="primary">
+        <td>م</td>
+        <td>الجهة</td>
+        <td>الموقع</td>
+        <td>الهاتف</td>
+        <td>البريد الالكتروني</td>
+        <td>عدد المستخدمين</td>
+        <td>الإجراءات</td>
+      </tr>
+      <tr *ngFor="let item of organizationsArray; let num = index">
+        <td>{{num + 1}}</td>
+        <td><ion-button (click)="addOrganizationUsers(item)" fill="clear" shape="round">
+          {{item.data.name}}
+        </ion-button>
+          </td>
+        <td>{{item.data.location}}</td>
+        <td>{{item.data.phone}}</td>
+        <td>{{item.data.email}}</td>
+        <td>{{item.data.users.length}}</td>
+        <td >
+          <ion-buttons slot="start">
+            <ion-button (click)="updateSendTo()">
+              <!-- <ion-icon slot="start" name="add"></ion-icon> -->
+              تعديل
+            </ion-button>
+            <ion-button (click)="onClick()">
+              <!-- <ion-icon slot="start" name="add"></ion-icon> -->
+              حذف
+            </ion-button>
+          </ion-buttons>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ion-content>

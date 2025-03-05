@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: Tab2Page,
+    // children:[
+    //   {path:'', redirectTo:'tab2', pathMatch:'full'},
+    //   {}
+    // ]
   }
 ];
 

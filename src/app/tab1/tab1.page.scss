@@ -1,0 +1,74 @@
+.orgsitting{
+    height: 300px;
+    width: 300px;
+    float: left;
+    background-color: #A62321;
+    position: relative;
+    top: 60%;
+    // position: fixed;
+}
+.orgsitting1{
+    height: 300px;
+    width: 300px;
+    float: right;
+    background-color: #A62321;
+    position: relative;
+    border-radius: 5px;
+    top: 60%;
+    margin-right: 37%;
+}
+.orglabelsitting{
+    text-align: center !important;
+    font-size: 22pt;
+    position: fixed;
+    // right: 0;
+    // left: 0;
+    // bottom: 0;
+    // top: 40%;
+    margin-top: 10%;
+    margin-right: 7%;
+    color: white;
+    width: 180px;
+}
+// .orglabelsitting1{
+//     text-align: center !important;
+//     font-size: 22pt;
+//     position: fixed;
+//     right: 0;
+//     left: 0;
+//     bottom: 0;
+//     top: 40%;
+//     color: white;
+// }
+
+.adminhome{
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+}
+
+// tr.custom-bg:nth-of-type(even){
+//     background-color: #dff6ff;
+// }
+
+// tr.custom-bg:nth-of-type(odd){
+//     background-color: #47b5ff;
+// }
+
+// .select{
+//     // position: inherit !important;
+//     --button-color: blue !important;
+// }
+
+.checkbox{
+    --border-color: black;
+}
+
+.selectColor{
+    color:blue !important;
+}
+// .sc-ion-action-sheet-md-h{
+//     --button-color: blue !important;
+// }

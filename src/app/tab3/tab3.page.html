@@ -1,17 +1,38 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Tab 3
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content  class="pagesBackground">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Tab 3</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+
+  <app-explore-container name="Tab 3 page"></app-explore-container> -->
+
+  <div>
+    <ion-title size="large" class="homeTitle">الإعدادات</ion-title>
+  </div>
+
+  <div align="center">
+
+    <ion-button (click)="resetPass()" expand="block" fill="clear" shape="round" class="generalButton"> 
+      إعـادة ضبـط كلمـة المــرور
+    </ion-button>
+    
+    <ion-button (click)="logout()" expand="block" fill="clear" shape="round" class="generalButton"> 
+      تـســجــيــــل الخـــــروج
+    </ion-button>
+
+  </div>
+
+  <!-- <ion-button (click)="startScanning()" expand="block" fill="clear" shape="round">
+    scan
+  </ion-button> -->
 </ion-content>

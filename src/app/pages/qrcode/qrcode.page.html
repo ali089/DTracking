@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>qrcode</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <div class="qrcode">
+        <!-- <br/> -->
+        <h3>الرجاء مسح الشريط (الباركود) للتأكد من صحة البريد المدخل</h3>
+       <qrcode [qrdata]="qrCodeValue" [width]="300" [errorCorrectionLevel]="'M'"></qrcode>
+       
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12"  align="center">
+      <ion-button type="submit" class="generalButton" (click)="closeModal()">
+        <!-- <ion-icon slot="icon-only" name="add"></ion-icon> -->
+        إغلاق
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="signupForm" (ngSubmit)="signup()">
+    <ion-select [(ngModel)]="userData.DriverId" class="generalInput" (ionChange)="changeDriver($event)" ok-text="موافق" cancel-text="إلغاء">
+      <ion-select-option *ngFor="let driver of drivers" [value]="driver.PartyUserId">{{driver.DisplayName}}</ion-select-option>
+    </ion-select>
+    <ion-item>
+      <ion-label>اختر المستخدم</ion-label>
+      <ion-select value="peperoni" placeholder="Select Pizza">
+        <ion-select-option value="peperoni">Peperoni</ion-select-option>
+        <ion-select-option value="hawaii">Hawaii</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">اسم المستخدم<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="userName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">كلمة المرور <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="password" type="text"></ion-input>
+    </ion-item>
+    <ion-button block color="primary" type="submit" [disablesignup.invalid]>
+      Login
+    </ion-button>
+  </form>
+
+</ion-content>

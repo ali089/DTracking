@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="manageorganizations" text="رجوع"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="pagesBackground">
+
+  <div class="corresdetailscontent">
+    <ion-row>
+      <ion-col size="1" class="feilds">الجهة:</ion-col>
+      <ion-col size="5">
+        <ion-input type="text" class="generalInput">{{data.data.name}}</ion-input>
+      </ion-col>
+      <ion-col size="1" class="feilds">الموقع:</ion-col>
+      <ion-col size="5">
+        <ion-input type="text" class="generalInput">{{data.data.location}}</ion-input>
+      </ion-col>
+    </ion-row>
+    <div class="correspondencesTable">
+      <ion-button (click)="showNewOrganizationUserModal()" class="showModal">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+      <table border="2" class="table">
+        <tr class="mainRow" color="primary">
+          <td>م</td>
+          <td>الاسم</td>
+          <td>المسمى الوظيفي</td>
+          <td>الملاحظة</td>
+          <td>الإجراءات</td>
+        </tr>
+        <tr *ngFor="let item of data.data.users let num = index">
+          <td>{{num + 1}}</td>
+          <td>{{item.data.name}}</td>
+          <td>{{item.data.position}}</td>
+          <td>{{item.data.notes}}</td>
+          <td >
+            <ion-buttons slot="start">
+              <ion-button (click)="updateSendTo()">
+                <!-- <ion-icon slot="start" name="add"></ion-icon> -->
+                تعديل
+              </ion-button>
+              <ion-button (click)="onClick()">
+                <!-- <ion-icon slot="start" name="add"></ion-icon> -->
+                حذف
+              </ion-button>
+            </ion-buttons>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+  <div align="center">
+    <ion-button [routerLink]="['/manageorganizations']"  expand="block" fill="clear" shape="round" 
+    class="generalButton" > 
+      حفظ
+    </ion-button>
+  </div>
+
+</ion-content>

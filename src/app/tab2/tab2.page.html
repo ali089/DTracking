@@ -1,17 +1,221 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Tab 2
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content class="pagesBackground">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
+  
+  <!-- <ion-segment [(ngModel)]="user" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="document">
+      <ion-label>Document User</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="trasportation">
+      <ion-label>Trasportation User</ion-label>
+    </ion-segment-button>
+  </ion-segment> -->
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <div *ngIf="user=='document'">
+    <!-- <h1>Document User</h1> -->
+    <div>
+      <ion-title size="large" class="homeTitle">إضافة وتعديل البريد</ion-title>
+    </div>
+    <!-- <app-explore-container name="Tab 2 page"></app-explore-container> -->
+  
+    <ion-button (click)="startScanning()" class="showModal">
+      مسح ضوئي
+    </ion-button><br>
+
+    <!-- <ion-row>
+      <ion-col>
+        <ion-input type="text" class="generalInput" required [(ngModel)]="deliveries" ></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="addDeliveries(deliveries)" class="showModal">
+         b مسح ضوئي
+        </ion-button>
+      </ion-col>
+    </ion-row> -->
+    <!-- <ion-row>
+      <ion-col>
+        <div>
+         البريد المدخل: <qrcode [qrdata]="qrCodeValue" [size]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        </div>
+      </ion-col>
+    </ion-row> -->
+    <div class="correspondencesTable">
+      <table border="2" class="table">
+        <tr class="mainRow">
+          <!-- <td>اختر</td> -->
+          <td> م </td>
+          <td>رقم البريد</td>
+          <td>الجهة</td>
+          <td>الموقع</td>
+          <td>مرسلة إلى</td>
+          <!-- <td>الوقت / التاريخ</td> -->
+          <!-- <td>التصنيف</td> -->
+          <!-- <td>درجة السرية</td> -->
+          <!-- <td>درجة الأولوية</td> -->
+          <!-- <td>طريقة التوصيل</td> -->
+          <td>اسم السائق</td>
+          <td>رقم السائق</td>
+          <td>الحالة</td>
+          <td>ملاحظات</td>
+          <td>الإجراءات</td>
+        </tr>
+        <tr *ngFor="let i of dvrBeforeSubmit let num = index" class="custom-bg">
+          <!-- <td>
+            <ion-checkbox slot="start" [(ngModel)]="i.isChecked" (ionChange)="onchange(i,$event.target.checked)"></ion-checkbox>
+          </td> -->
+          <!-- <td>
+            <ion-button (click)="corresdetailsbeforesend(i)"  fill="clear" >
+              <u>
+                {{i.correspondenceNumber}}
+              </u>
+            </ion-button>
+          </td> -->
+          <td>{{num + 1}}</td>
+          <td>{{i.CorrespondenceNumber}}</td> 
+          <td>{{i.organizationName}}</td>
+          <td>{{i.OfficeSite}}</td>
+          <td>{{i.SendTo}}</td>
+          <!-- <td>{{i.dateTime}}</td> -->
+          <!-- <td>{{i.confidLevel}}</td> -->
+          <!-- <td>{{i.PriorityLevel}}</td> -->
+          <!-- <td>{{i.deliveryMethod}}</td> -->
+          <td>{{i.driverName}}</td>
+          <td>{{i.DriverNumber}}</td>
+          <td>{{i.deliveryStatus}}</td>
+          <td>{{i.CurrentNote}}</td>
+
+          <td >
+            <ion-buttons >
+              <div class="tooltip">
+                <ion-button (click)="updateDelivery(i)">
+                  <ion-icon name="create" placeholder="edit"></ion-icon>
+                </ion-button>
+                <span class="tooltiptext">تعديل</span>
+              </div>
+              
+              <div class="tooltip">
+                <ion-button (click)="presentAlertConfirm(i.Id)" >
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+                <span class="tooltiptext">حذف</span>
+              </div>
+              
+            </ion-buttons>
+          </td>
+        </tr>
+      </table>
+  
+      <!-- <ion-button (click)="sendtoTransportation()" class="sendtoTransportationbutton">
+         style="background-color: cadetblue;"
+        إرسال للسائقينstyle="background-color: rgb(156, 14, 14);"
+      </ion-button> -->
+  
+      
+    </div>
+  </div>
+
+  <!-- <div *ngIf="user=='trasportation'">
+
+    <div>
+      <ion-title size="large" class="homeTitle">اختيار السائق</ion-title>
+    </div>
+    <div  class="correspondencesTable">
+      <table border="2" class="table">
+        <tr class="mainRow">
+          <td>اختر</td>
+          <td>رقم الرسالة</td>
+          <td>الجهة</td>
+          <td>الموقع</td>
+          <td>مرسلة إلى</td>
+          <td>الوقت / التاريخ</td>
+          <td>التصنيف</td>
+          <td>الإجراءات</td>
+        </tr>
+
+
+         <tr *ngFor="let i of sentcorres">
+          <td>
+            <ion-checkbox slot="start" [(ngModel)]="i.isChecked" (ionChange)="onchange()"></ion-checkbox>
+          </td>
+          <td>{{i.correspondenceNumber}}</td>
+          <td>{{i.organizationName}}</td>
+          <td>{{i.organizationLocation}}</td>
+          <td>{{i.sendTo}}</td>
+          <td>{{i.dateTime}}</td>
+          <td>{{i.classifications}}</td>
+          <td>
+
+            <ion-buttons >
+              <ion-button (click)="onClick()">
+                إرجاع
+              </ion-button>
+          
+            </ion-buttons>
+          </td>
+        </tr> 
+      </table>
+    
+     
+
+      <ion-row>
+        <ion-col size="1.5" class="feilds">السائق:</ion-col>
+        <ion-col size="9.5">
+          <ion-select [(ngModel)]="driverList.driverName" class="generalInput" ok-text="موافق" cancel-text="إلغاء">
+            <ion-select-option *ngFor="let item of correspondences">{{item.sendTo}}</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1.5" class="feilds">الرقم الوظيفي:</ion-col>
+        <ion-col size="4.5">
+          <ion-input type="text" class="generalInput" [(ngModel)]="driverList.positionNumber"></ion-input>
+        </ion-col>
+        <ion-col size="1.5" class="feilds">رقم الهاتف:</ion-col>
+        <ion-col size="4.5">
+          <ion-input type="number" class="generalInput" [(ngModel)]="driverList.phoneNumber"></ion-input>
+        </ion-col>
+      </ion-row> 
+      <div align="center">
+        <ion-button (click)="onClick()" class="generalButton" expand="block" fill="clear" shape="round">
+          حفظ
+        </ion-button>
+      </div>
+
+    </div>
+
+  </div> -->
+  
+
+
+
 </ion-content>
+
+<!-- <ion-footer class="footer" *ngIf="user=='document'">
+  <ion-toolbar class="toolbar">
+    <ion-button (click)="sendtoDriver()" class="sendtoTransportationbutton">
+      إرسال إلى السائقين
+    </ion-button>
+  
+  
+     <ion-fab class="addcorrespondence" color="primary">
+      <ion-fab-button [routerLink]="['/add-correspondence']" >
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> 
+  </ion-toolbar>
+</ion-footer> -->

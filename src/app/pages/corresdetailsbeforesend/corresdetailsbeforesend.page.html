@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab2" text="رجوع"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="pagesBackground">
+
+  <div>
+    <ion-title size="large" class="homeTitle">رقم الصادر: {{data.correspondenceNumber}}</ion-title>
+  </div>
+
+  <div class="correspondencesTable">
+    <ion-row>
+     
+      <ion-col size="1.5" class="feilds">درجة السرية:</ion-col>
+      <ion-col size="2.5">
+        <ion-input type="text" class="generalInput">{{data.securitylevel}}</ion-input>
+      </ion-col>
+      <ion-col size="1.5" class="feilds">درجة الأولوية:</ion-col>
+      <ion-col size="2.5">
+        <ion-input type="text" class="generalInput">{{data.prioritylevel}}</ion-input>
+      </ion-col>
+      <ion-col size="1.5" class="feilds">أخرى:</ion-col>
+      <ion-col size="2.5">
+        <ion-input type="text" class="generalInput">{{data.othercondition}}</ion-input>
+      </ion-col>
+     
+    </ion-row>
+
+    <!-- <ion-row>
+      <ion-col size="1.5" class="feilds">درجة الأولوية:</ion-col>
+      <ion-col size="4.5">
+        <ion-select [(ngModel)]="newCorrespondence.prioritylevel" value="" class="generalInput" ok-text="موافق" cancel-text="إلغاء">
+          <ion-select-option value="عاجل جداً">عاجل جداً</ion-select-option>
+          <ion-select-option value="عاجل">عاجل</ion-select-option>
+          <ion-select-option value="يسلم بمجرد الوصول">يسلم بمجرد الوصول</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="1.5" class="feilds">أخرى:</ion-col>
+      <ion-col size="4.5">
+        <ion-select [(ngModel)]="newCorrespondence.othercondition" value="" class="generalInput" ok-text="موافق" cancel-text="إلغاء">
+          <ion-select-option value="empty"></ion-select-option>
+          <ion-select-option value="شخصي">شخصي</ion-select-option>
+          <ion-select-option value="لا يفتح إلا من قبل المرسل إليه شخصياً">لا يفتح إلا من قبل المرسل إليه شخصياً</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row> -->
+
+
+    <!-- <ion-row>
+      <ion-col size="3" class="feilds">المرسل إليه:<ion-text color="danger">*</ion-text></ion-col>
+      <ion-col size="9"> -->
+        <!-- <select  class="loginInput">
+          <option *ngFor="let item of list" [value]="item">{{item.sendTo}}</option>
+        </select> -->
+        <!-- <ion-select [(ngModel)]="newCorrespondence.sendTo" class="generalInput" ok-text="موافق" cancel-text="إلغاء">
+          <ion-select-option *ngFor="let item of list">{{item.sendTo}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row> -->
+
+    <div>
+      <!-- <ion-button (click)="showSendtoModal()" class="newAddress">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button> -->
+      <table border="2" class="table">
+        <tr class="mainRow" color="primary">
+          <td>الجهة:</td>
+          <td>الموقع:</td>
+          <td>المرسل إليه:</td>
+          <td>نوع الصادر</td>
+          <!-- <td>الإجراءات</td> -->
+        </tr>
+        <tr *ngFor="let item of data.sendTo">
+          <td>{{item.data.organizationName}}</td>
+          <td>{{item.data.organizationLocation}}</td>
+          <td>{{item.data.sendTo}}</td>
+          <td>{{item.data.correspondenceType}}</td>
+          <!-- <td><ion-list>
+            <ion-radio-group name="corresType" value="original" [(ngModel)]="newCorrespondence.correspondenceType">
+              <ion-item>
+                <ion-label>أصلية</ion-label>
+                <ion-radio value="original"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>نسخة</ion-label>
+                <ion-radio value="copy"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list></td> -->
+          <!-- <td>
+            <ion-buttons slot="start">
+              <ion-button (click)="updateSendTo()">
+                <ion-icon slot="start" name="add"></ion-icon>
+                تعديل
+              </ion-button>
+              <ion-button (click)="onClick()">
+                <ion-icon slot="start" name="add"></ion-icon>
+                حذف
+              </ion-button>
+            </ion-buttons>
+          </td> -->
+
+        </tr>
+      </table>
+    </div>
+
+
+  </div>
+  <!-- <div align="center">
+    <ion-button (click)="addCorrespondence(newCorrespondence)" expand="block" fill="clear" shape="round" 
+    class="generalButton" [disabled]="newCorrespondence.correspondenceNumber == null "> 
+      حفظ
+    </ion-button>
+  </div> -->
+
+ 
+  
+</ion-content>

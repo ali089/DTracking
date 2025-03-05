@@ -1,0 +1,74 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>general</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="pagesBackground">
+  <!-- <div align="center">
+    <img src="../../../assets/images/98a03181-7357-40c3-9884-78e451f2bb3e.jpg" alt="" width="250" height="200" class="logoImage">
+    <h1 class="login">تـســجــيــــل الـــدخـــــول</h1>
+    <ion-item class="generalInput">
+      <ion-label>أسم المستخدم <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="text" [(ngModel)]="users.userName" required></ion-input>
+    </ion-item>
+    <ion-item class="generalInput">
+      <ion-label>كلمة المرور <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="password" [(ngModel)]="users.password" required></ion-input>
+    </ion-item>
+    <ion-button (click)="login()" expand="block" fill="clear" shape="round" class="loginButton">
+      دخول
+    </ion-button>
+    <u color="light" (click)="sendEmail()">نسيت كلمة المرور</u>
+  </div> -->
+
+<div align="center">
+  <form [formGroup]="PassForm" (ngSubmit)="login()">
+    <img src="../../../assets/images/GSClogo.png" alt="" width="250" height="200" class="logoImage">
+    <h1 class="login">نـظـــام نـقـــل البـــريـــد</h1>
+    <h1 class="login">تـســجــيــــل الـــدخـــــول</h1>
+
+    <ion-item class="generalInput" >
+      
+      <ion-input required formControlName="userName" type="text"><ion-label>اسم المستخدم <ion-text color="danger">*</ion-text></ion-label></ion-input>
+    </ion-item> 
+    <!-- <ion-item class="generalInput"> -->
+      
+      <!-- <ion-input required formControlName="password" type="password" class="generalInput"><ion-label>كلمة المرور <ion-text color="danger">*</ion-text></ion-label></ion-input> -->
+    <!-- </ion-item> -->
+
+    <!-- <ion-row> -->
+      <!-- <ion-col size="4" class="feilds">كلمة المرور: <ion-text color="danger">*</ion-text></ion-col> -->
+      <!-- <ion-col size="8"> -->
+        <ion-item class="generalInput" >
+          <ion-input [type]="showPassword ? 'text' : 'password'" required formControlName="Password" name="Password"><ion-label>كلمة المرور <ion-text color="danger">*</ion-text></ion-label></ion-input>
+          <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54);"></ion-icon>
+  
+        </ion-item>
+        <div class="error-container">
+          <ng-container *ngFor="let validation of validations.Password">
+            <div class="error-message" *ngIf="PassForm.get('Password').hasError(validation.type) && (PassForm.get('Password').dirty || PassForm.get('Password').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>{{ validation.message }}</span>
+            </div>
+          </ng-container>
+        </div>
+      <!-- </ion-col> -->
+    <!-- </ion-row> -->
+
+    <!-- <ion-item class="generalInput" >
+      <ion-label style="background-color: white;">اسم المستخدم <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="userName" type="text" style="background-color: white;" ></ion-input>
+    </ion-item>
+    <ion-item class="generalInput">
+      <ion-label  style="background-color: white;">كلمة المرور <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required formControlName="password" type="password" style="background-color: white;"></ion-input>
+    </ion-item> -->
+    <ion-button block color="primary" type="submit" [disabled]="PassForm.invalid" class="loginButton" >
+      دخول
+    </ion-button><br>
+    <!-- <u style="color: black;" (click)="sendEmail()">نسيت كلمة المرور</u> -->
+  </form>
+</div>
+
+</ion-content>

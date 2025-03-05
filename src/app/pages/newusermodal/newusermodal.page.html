@@ -1,0 +1,170 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>إضافة مستخدم جديد</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="modalPages">
+
+  <ion-row>
+    <ion-col size="4" class="feilds">اختر المستخدم: <ion-text color="danger">*</ion-text></ion-col>
+    <ion-col size="8">
+
+      <ion-item class="generalInput">
+        <ionic-selectable 
+        [items]="agendaUsers" 
+        [(ngModel)]="agendaUser" 
+        required
+        itemValuefield="Id" 
+        itemTextField="FullName"
+        [canSearch]="true"
+        (onChange)="userChange($event)">
+        
+
+
+        </ionic-selectable>
+      </ion-item>
+      <!-- <ng-select [items]="usersfullName" bindLabel="name" bindValue="name" [multiple]="true" placeholder="Select cities"
+        [(ngModel)]="searchTerm">
+        [items]="agendaUsers" 
+                [(ngModel)]="agendaUser" 
+        itemValuefield="id" 
+        itemTextField="name"
+        [canSearch]="true"
+        (onChange)="userChange($event)">
+      </ng-select> -->
+
+      <!-- <ion-searchbar [(ngModel)]="searchTerm"></ion-searchbar>
+      <ion-list >
+        <ion-item *ngFor="let User of Users | filter:searchTerm" [disbled]="false">{{User.FullName}}</ion-item>
+    </ion-list> -->
+      <!-- <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)"></ion-searchbar> -->
+      <!-- <select [(ngModel)]="user.PartyUserId" class="generalInput">
+        <option *ngFor="let User of Users | filter:searchTerm " [value]="User.PartyUserId">{{User.FullName}}</option>
+      </select> -->
+    </ion-col>
+
+    
+
+
+  </ion-row>
+  
+  <ion-row>
+    <ion-col size="4" class="feilds">اسم المستخدم:</ion-col>
+    <ion-col size="8">
+      <ion-input type="text" class="generalInput" required [(ngModel)]="user.UserName" ></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <!-- <ion-row>
+    <ion-col size="3" class="feilds">الاسم كامل:</ion-col>
+    <ion-col size="9">
+      <ion-input type="text" class="generalInput" [(ngModel)]="user.fullname"></ion-input>
+    </ion-col>
+  </ion-row> -->
+  <ion-row>
+    <ion-col size="4" class="feilds">المسمى الوظيفي:</ion-col>
+    <ion-col size="8">
+      <ion-input type="text" class="generalInput" required [(ngModel)]="user.Position"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4" class="feilds">الدائرة:</ion-col>
+    <!-- <ion-col size="9">
+      <ion-input type="text" class="generalInput" [(ngModel)]="user.Department"></ion-input>
+    </ion-col> -->
+    <ion-col size="8">
+      <ion-input type="text" class="generalInput" required [(ngModel)]="user.Department"></ion-input>
+    </ion-col>
+    <!-- <ion-col size="9">
+      <ion-select [(ngModel)]="user.Department" value="تقنية المعلومات" class="generalInput" placeholder="اختر الدائرة" ok-text="موافق" cancel-text="إلغاء">
+        <ion-select-option value="تقنية المعلومات">تقنية المعلومات</ion-select-option>
+        <ion-select-option value="الوثائق">الوثائق</ion-select-option>
+        <ion-select-option value="الشؤون الإدارية">الشؤون الإدارية</ion-select-option>
+        <ion-select-option value="driver">السائق</ion-select-option>
+      </ion-select>
+    </ion-col> -->
+  </ion-row>
+  <ion-row>
+    <ion-col size="4" class="feilds">رقم الهاتف:</ion-col>
+    <ion-col size="8">
+      <ion-input type="text" class="generalInput" required [(ngModel)]="user.Phone"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <!-- <ion-item> -->
+      <ion-col size="4" class="feilds">
+      <ion-label >نوع المستخدم: <ion-text color="danger">*</ion-text></ion-label>
+      </ion-col>
+      <ion-col size="8">
+        <ion-select [(ngModel)]="user.UserType"  value="admin" class="generalInput" placeholder="اختر المستخدم" ok-text="موافق" cancel-text="إلغاء">
+          <ion-select-option value="admin">مدير النظام</ion-select-option>
+          <ion-select-option value="document">الوثائق</ion-select-option>
+          <ion-select-option value="transportation">مسؤول النقليات</ion-select-option>
+          <ion-select-option value="driver">السائق</ion-select-option>
+        </ion-select>
+      </ion-col>
+ 
+    <!-- </ion-item> -->
+    <!-- <ion-col size="3" class="feilds">نوع المستخدم:</ion-col>
+    <ion-col size="9">
+      <ion-input type="text" class="generalInput" [(ngModel)]="user.UserType"></ion-input>
+    </ion-col> -->
+  </ion-row>
+  <!-- <ion-row>
+    <ion-col size="3" class="feilds">رقم الهاتف:</ion-col>
+    <ion-col size="9">
+      <ion-input type="number" class="generalInput" [(ngModel)]="user.Phone"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="3" class="feilds">البريد الالكتروني:</ion-col>
+    <ion-col size="9">
+      <ion-input type="mail" class="generalInput" [(ngModel)]="user.Email"></ion-input>
+    </ion-col>
+  </ion-row> -->
+  <form [formGroup]="RegisterForm" (ngSubmit)="newUser()">
+ <!-- <mat-form-field> -->
+  <ion-row>
+    <ion-col size="4" class="feilds">كلمة المرور: <ion-text color="danger">*</ion-text></ion-col>
+    <ion-col size="8">
+      <ion-item class="generalInput" >
+        <ion-input [type]="showPassword ? 'text' : 'password'" required formControlName="Password" name="Password"></ion-input>
+        <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54);"></ion-icon>
+
+      </ion-item>
+      <div class="error-container">
+        <ng-container *ngFor="let validation of validations.Password">
+          <div class="error-message" *ngIf="RegisterForm.get('Password').hasError(validation.type) && (RegisterForm.get('Password').dirty || RegisterForm.get('Password').touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4" class="feilds">تأكيد كلمة المرور: <ion-text color="danger">*</ion-text></ion-col>
+    <ion-col size="8">
+      <ion-input type="password" class="generalInput" required formControlName="Repassword" name="Repassword"></ion-input>
+      <!-- <ion-item class="generalInput" >
+        <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.Repassword" name="repassword"></ion-input>
+        <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()" style="color:rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.54);"></ion-icon>
+      </ion-item> -->
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="12"  align="center">
+      <ion-button type="submit" class="generalButton" [disabled]="RegisterForm.value.Password != RegisterForm.value.Repassword || RegisterForm.invalid || agendaUser == null">
+        <!-- <ion-icon slot="icon-only" name="add"></ion-icon> -->
+        إضافة
+      </ion-button>
+    </ion-col>
+  </ion-row>
+<!-- </mat-form-field> -->
+</form>
+</div>
+</ion-content>

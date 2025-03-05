@@ -1,0 +1,271 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1" text="رجوع"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="pagesBackground" dir="rtl">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div>
+    <ion-title class="homeTitle">البريد رقم: {{data.CorrespondenceNumber}}</ion-title>
+  </div>
+<!-- [disabled]="true" color="dark" -->
+<div class="corresdetailscontent">
+
+  <ion-grid>
+  <ion-label class="label">بيانات المرسل إليه:</ion-label>
+  <ion-row>
+    <ion-col class="correspondencedetailsInput">
+      <ion-label style="font-weight: bold;">المرسل إليه: </ion-label>
+      <ion-label>{{data.SendTo}}</ion-label>    
+  </ion-col>
+ 
+  </ion-row>
+    <ion-row>
+      <ion-col class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">الجهة: </ion-label>
+          <ion-label>{{data.organizationName}}</ion-label>    
+      </ion-col>
+      <ion-col class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">الموقع: </ion-label>
+          <ion-label>{{data.OfficeSite}}</ion-label>
+      </ion-col>
+    </ion-row>
+
+  
+
+
+  </ion-grid>
+<br/>
+  <ion-grid >
+    <ion-label class="label">بيانات البريد: </ion-label>
+    <ion-row>
+      
+      <ion-col class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">معد البريد: </ion-label>
+        <ion-label>{{data.OutboundSender}}</ion-label>    
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <!-- <ion-col class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">معد البريد: </ion-label>
+        <ion-label>{{data.OutboundSender}}</ion-label>    
+    </ion-col> -->
+      <ion-col class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">درجة السرية: </ion-label>
+          <ion-label>{{data.confidLevel}}</ion-label>    
+      </ion-col>
+      <ion-col  class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">درجة الأولوية: </ion-label>
+          <ion-label>{{data.PriorityLevel}}</ion-label>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+<br/>
+  <!-- <ion-grid>
+    <ion-label class="label">معد الوثيقة:</ion-label>
+    <ion-row>
+      
+      <ion-col class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">معد الصادر: </ion-label>
+        <ion-label>{{data.OutboundSender}}</ion-label>    
+    </ion-col>
+      <ion-col  class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">الملاحظات: </ion-label>
+          <ion-label>{{data.Notes}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<br/> -->
+
+  <!-- <ion-grid>
+    <ion-label class="label">بيانات السائق:</ion-label>
+    <ion-row>
+      
+      <ion-col class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">اسم السائق: </ion-label>
+        <ion-label>{{data.driverName}}</ion-label>    
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col  class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">رقم هاتف السائق: </ion-label>
+          <ion-label>{{data.driverPhone}}</ion-label>
+      </ion-col>
+      <ion-col  class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">طريقة التوصيل: </ion-label>
+          <ion-label>{{data.deliveryMethod}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<br/> -->
+
+  <ion-grid>
+    <ion-label class="label">بيانات المستلم:</ion-label>
+    <ion-row>
+      <ion-col class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">اسم المستلم: </ion-label>
+        <ion-label>{{data.ReceipientName}}</ion-label>    
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col  class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">موقع الاستلام: </ion-label>
+          <ion-label>
+            <a *ngIf="data.DeliveryCoordinates!=null" href="http://www.google.com/maps/place/{{data.DeliveryCoordinates}}" >اضغط لمشاهدة الموقع</a> 
+          </ion-label>
+      </ion-col>
+      <ion-col  class="correspondencedetailsInput">
+        <ion-label style="font-weight: bold;">الرقم الوظيفي: </ion-label>
+          <ion-label>{{data.ReceipientId}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-label class="label">توقيع المستلم:</ion-label>
+      <ion-col class="correspondencedetailsInput">
+        
+        <img *ngIf="data.ReceipientSignature!=null" src="{{imageurl}}" alt="توقيع المستلم">
+      </ion-col>
+      <!-- <ion-col  class="correspondencedetailsInput">
+        <img src="{{imageurl}}" alt="khalid test">
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+  <br/>
+
+  <!-- <ion-row>
+    <ion-col size="6">
+      <ion-item class="correspondencedetailsInput"  disabled="true">
+        <ion-label>درجة السرية:</ion-label>
+        <ion-input>{{data.confidLevel}}</ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-item class="correspondencedetailsInput">
+        <ion-label>درجة الأولوية:</ion-label>
+        <ion-input>{{data.PriorityLevel}}</ion-input>
+      </ion-item>
+    </ion-col>
+
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <ion-item class="correspondencedetailsInput">
+        <ion-label>طريقة التوصيل:</ion-label>
+        <ion-input>{{data.deliveryMethod}}</ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item class="correspondencedetailsInput">
+        <ion-label>معد الصادر:</ion-label>
+        <ion-input>{{data.OutboundSender}}</ion-input>
+      </ion-item>
+    </ion-col>
+
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <ion-item class="correspondencedetailsInput">
+        <ion-label>اسم المستلم:</ion-label>
+        <ion-input>{{data.ReceipientName}}</ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item class="correspondencedetailsInput">
+        <ion-label>توقيع المستلم:</ion-label>
+         <ion-img src="imageurl"></ion-img> 
+        <img src="{{imageurl}}" alt="">
+         <img src="../../../assets/images/98a03181-7357-40c3-9884-78e451f2bb3e.jpg" alt="" width="250" height="200" class="logoImage"> 
+
+         <ion-input>{{data.ReciepientSignature}}</ion-input> 
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <ion-item class="correspondencedetailsInput">
+        <ion-label>موقع التسليم:</ion-label>
+        <ion-input>{{data.DeliveryCoordinates}}</ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item class="correspondencedetailsInput">
+        <ion-label>ملاحظات:</ion-label>
+        <ion-input>{{data.Notes}}</ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+  <ion-row>
+    <ion-label class="label">حركة البريد: </ion-label>
+    <ion-col size="12">
+      <table border="1" class="statusTable">
+        <tr>
+          <td> م </td>
+          <td>الحالة</td>
+          <td>الوقت والتاريخ</td>
+          <td>منفذ الحركة</td>
+          <td>اسم السائق</td>
+          <td>رقم السائق</td>
+          <td>موقع التسليم</td>
+
+          <!-- <td>التاريخ</td> -->
+          <td>الملاحظات</td>
+        </tr>
+        <tr *ngFor="let state of status, let num = index">
+          <td>{{num + 1}}</td>
+          <td>{{state.StatusType}}</td>
+          <td>{{state.DateTime}}</td>
+          <td>{{state.UserFullName}}</td>
+          <td>{{state.DriverFullName}}</td>
+          <td>{{state.DriverNumber}}</td>
+          <td>{{state.OfficeSite}}</td>
+          <td>{{state.Notes}}</td>
+
+        </tr>
+        <!-- <tr *ngIf="data.AssignDateTime != null">
+          <td>1</td>
+          <td>قيد الارسال</td>
+          <td>{{data.AssignDateTime}}</td>
+          <td>{{data.Notes}}</td>
+        </tr>
+        <tr *ngIf="data.ReadyToGoDateTime != null">
+          <td>2</td>
+          <td>قيد الاستلام</td>
+          <td>{{data.ReadyToGoDateTime}}</td>
+          <td>-</td>
+        </tr>
+        <tr *ngIf="data.DeliveryDateTime != null && data.ReceipientName != null">
+          <td>3</td>
+          <td>تم الاستلام</td>
+          <td>{{data.DeliveryDateTime}}</td>
+          <td>{{data.DeliveryNotes}}</td>
+        </tr>
+        <tr *ngIf="data.DeliveryDateTime != null && data.ReceipientName == null" style="background-color: danger !important;">
+          <td>3</td>
+          <td>تم الارجاع</td>
+          <td>{{data.DeliveryDateTime}}</td>
+          <td>{{data.DeliveryNotes}}</td>
+        </tr> -->
+        
+      </table>
+    </ion-col>
+  </ion-row>
+  <br/>
+  <!-- <img src="{{imageurl}}" alt="khalid test"> -->
+  <!-- <img src="{{data.OfficeSite}}" alt=""> -->
+</div>
+
+
+</ion-content>

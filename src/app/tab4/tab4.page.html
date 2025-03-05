@@ -1,0 +1,118 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>tab4</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <div class="correspondencesTable">
+    <div>
+      <ion-title size="large" class="homeTitle">الـبــــريــــــد</ion-title>
+  
+    </div>
+
+    <ion-row style="width: 100%;">
+      <ion-col size="1" class="feilds">السائق:</ion-col>
+      <ion-col size="4.5">
+        <!-- <ion-label class="feilds">السائق:</ion-label> -->
+        <ion-input type="text" class="generalInput">{{driverName}}</ion-input>
+      </ion-col>
+         <ion-col size="1" class="feilds">التاريخ:</ion-col>
+      <ion-col size="4">
+        <ion-input type="text" class="generalInput">{{date}}</ion-input>
+      </ion-col>
+      <ion-col size="1" style="padding-top: 25px;">
+        <ion-button (click)="readyToGo()" [disabled]="readyToGoButton==true">
+          جاهز للتوصيل
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-col size="1" class="feilds">الموقع:</ion-col>
+      <ion-col size="5">
+        <ion-input type="text" class="generalInput"></ion-input>
+      </ion-col>
+          <ion-col size="1" class="feilds">اليوم:</ion-col>
+      <ion-col size="5">
+        <ion-input type="text" class="generalInput"></ion-input>
+      </ion-col>
+    </ion-row> -->
+
+
+
+    <table class="table" border="2">
+      <tr class="mainRow">
+        <td>م</td>
+        <td>اختر</td>
+        <td>رقم البريد</td>
+        <td>الجهة</td>
+        <td>الموقع</td>
+        <td>مرسلة إلى</td>
+        <!-- <td>درجة السرية</td> -->
+        <!-- <td>درجة الأولوية</td> -->
+        <!-- <td>طريقة التوصيل</td> -->
+        <td>الوقت</td>
+        <td>الحالة</td>
+        <td>الملاحظات</td>
+        <td>الإجراءات</td>
+      </tr>
+      <tr *ngFor="let i of deliveryByDriver; let num = index" class="custom-bg">
+        <td>{{num + 1}}</td>
+        <td>
+          <ion-checkbox slot="end" class="checkbox" [(ngModel)]="i.isChecked" (ionChange)="onChange(i, $event.target.checked)"></ion-checkbox>
+        </td>
+        <td>{{i.CorrespondenceNumber}}</td>
+        <td>{{i.organizationName}}</td>
+        <td>{{i.OfficeSite}}</td>
+        <td>{{i.SendTo}}</td>
+        <!-- <td>{{i.ConfidLevel}}</td> -->
+        <!-- <td>{{i.PriorityLevel}}</td> -->
+        <!-- <td>{{i.DeliveryMethod}}</td> -->
+        <td>{{i.CurrentDateTime}}</td>
+        <td>{{i.CurrentStatus}}</td>
+        <td>{{i.CurrentNote}}</td>
+        <td >
+          <ion-buttons >
+            <div class="tooltip">
+              <ion-button (click)="goToRecipientDetails(i)" [disabled]="enableButtons == false">
+                <ion-icon name="paper-plane-outline"></ion-icon>
+              </ion-button>
+              <span class="tooltiptext">المستلم</span>
+            </div>
+            
+            <div class="tooltip">
+              <ion-button (click)="returnBack(i.Id)" [disabled]="enableButtons == false">
+                <!-- <ion-icon md="md-return-left"></ion-icon> -->
+                <ion-icon name="arrow-back-outline" ></ion-icon>
+              </ion-button>
+              <span class="tooltiptext">إسترجاع</span>
+            </div>
+            
+          </ion-buttons>
+        </td>
+
+        <!-- <td style="background-color: white;">
+          <ion-buttons >
+            <ion-button (click)="goToRecipientDetails(i)" [disabled]="enableButtons==false" style="background-color: cadetblue;">
+              المستلم
+            </ion-button>
+            <ion-button (click)="returnBack(i.Id)" [disabled]="enableButtons==false" style="background-color: rgb(156, 14, 14);">
+              إرجاع
+            </ion-button>
+        
+          </ion-buttons>
+        </td> -->
+      </tr>
+    </table>
+<br/><br/>
+    <div class="tooltip">
+      <ion-button (click)="goToRecipientDetails1()" [disabled]="enableButtons == false || selectedDeliveryByDriver == ''">
+        <ion-icon name="paper-plane-outline"></ion-icon>
+      </ion-button>
+      <span class="tooltiptext">المستلم لأكثر من بريد واحد</span>
+    </div>
+
+  </div>
+
+</ion-content>

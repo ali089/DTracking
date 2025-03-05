@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  userDetails = JSON.parse(localStorage.getItem('userDetials')) as User;
+  userType = "";
+  constructor() {
+    this.userType = "";
+    // console.log(this.userDetails);
+    this.userType = this.userDetails[0].UserType;
+  }
 
+  
 }

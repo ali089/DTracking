@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1" text="رجوع"></ion-back-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="pagesBackground">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  
+  <div>
+    <ion-title size="large" class="homeTitle">إدارة المستخدمين</ion-title>
+  </div>
+  <div class="correspondencesTable">
+    <ion-button (click)="showNewUserModal()" class="showModal">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+    <table border="2" class="table">
+      <tr class="mainRow" color="primary">
+        <td>م</td>
+        <td>اسم المستخدم</td>
+        <td>الاسم</td>
+        <td>المسمى الوظيفي</td>
+        <td>الدائرة</td>
+        <td>نوع المستخدم</td>
+        <td>رقم الهاتف</td>
+        
+        <td>الإجراءات</td>
+      </tr>
+      <tr *ngFor="let item of users; let num = index" class="custom-bg">
+        <td>{{num + 1}}</td>
+        <td>{{item.UserName}}</td>
+        <td>{{item.FullName}}</td>
+        <td>{{item.Position}}</td>
+        <td>{{item.Department}}</td>
+        <td>{{item.UserType}}</td>
+        <td>{{item.Phone}}</td>
+        <td  style="background-color:white;">
+          <ion-buttons slot="start">
+            <ion-button (click)="updateUserDetails(item)" style="background-color: cadetblue;">
+              <!-- <ion-icon slot="start" name="add"></ion-icon> -->
+              تعديل
+            </ion-button>
+            <ion-button (click)="presentAlertConfirm(item.Id)" style="background-color: rgb(156, 14, 14);">
+              <!-- <ion-icon slot="start" name="add"></ion-icon> -->
+              حذف
+            </ion-button>
+          </ion-buttons>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ion-content>

@@ -1,0 +1,76 @@
+<ion-header>
+  <!-- <ion-buttons slot="end">
+    <ion-button (click)="dismissModal()">
+      إغلاقclose
+    </ion-button>
+  </ion-buttons> -->
+  <ion-buttons slot="end">
+    <ion-back-button defaultHref="home">close</ion-back-button>
+  </ion-buttons>
+  <ion-toolbar>
+    <ion-title>رقم الصادر: {{correspondenceNumber}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="3" class="feilds">الجهة:<ion-text color="danger">*</ion-text></ion-col>
+    <ion-col size="9">
+     
+      <ion-select [(ngModel)]="addOrganization.organizationName" class="generalInput" ok-text="موافق" cancel-text="إلغاء">
+        <ion-select-option *ngFor="let item of list">{{item.organizationName}}</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+     
+    <ion-row>
+    <ion-col size="3" class="feilds">الموقع:<ion-text color="danger">*</ion-text>
+      
+    </ion-col>
+    <ion-col size="9">
+      <ion-select class="generalInput" [(ngModel)]="addOrganization.organizationLocation" ok-text="موافق" cancel-text="إلغاء">
+        <ion-select-option *ngFor="let item of list">{{item.organizationLocation}}</ion-select-option>
+      </ion-select>
+    </ion-col>
+
+  </ion-row>
+  <ion-row>
+    <ion-col size="3" class="feilds">المرسل إليه:<ion-text color="danger">*</ion-text>
+      
+    </ion-col>
+    <ion-col size="9">
+      <ion-select [(ngModel)]="addOrganization.sendTo" class="generalInput" ok-text="موافق" cancel-text="إلغاء">
+        <ion-select-option *ngFor="let item of list">{{item.sendTo}}</ion-select-option>
+      </ion-select>
+    </ion-col>
+  
+  </ion-row>
+<ion-row>
+  <ion-col size="12">
+    <ion-list>
+      <ion-list-header>
+        <ion-label>نوع الصادر</ion-label>
+      </ion-list-header>
+      <ion-radio-group name="corresType" value="أصلية" [(ngModel)]="addOrganization.correspondenceType">
+        <ion-item>
+          <ion-label>أصلية</ion-label>
+          <ion-radio value="أصلية"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>نسخة</ion-label>
+          <ion-radio value="نسخة"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </ion-col>
+</ion-row>
+  <ion-row>
+    <ion-col size="12"  align="center">
+      <ion-button (click)="addsendto(addOrganization)" class="generalButton">
+        <!-- <ion-icon slot="icon-only" name="add"></ion-icon> -->
+        إضافة
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
